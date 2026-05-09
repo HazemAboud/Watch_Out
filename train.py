@@ -7,7 +7,6 @@ import glob
 
 if __name__ == '__main__':
     hyperparams_grid = [
-        # Switched back to Small (yolo11s) for better accuracy.
         { 'model': 'yolo11s.pt', 'optimizer': 'AdamW', 'lr0': 0.001, 'batch': 8, 'imgsz': 960, 'epochs': 100},
     ]
 
@@ -22,7 +21,6 @@ if __name__ == '__main__':
         except Exception as e:
             print(f"Error deleting {cache_file}: {e}")
 
-    # Tracking best model
     best_map = 0.0
     best_model_path = None
     best_params = None
@@ -34,7 +32,6 @@ if __name__ == '__main__':
     else:
         print("Training on device: CPU")
         print(f"PyTorch Version: {torch.__version__}")
-        print("(!) If you have an NVIDIA GPU, check that you installed the CUDA version of PyTorch (e.g., via --index-url https://download.pytorch.org/whl/cu121).")
 
     for params in hyperparams_grid:
         print(f"\n=== Starting training with: {params} ===")
